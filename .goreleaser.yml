@@ -1,0 +1,8 @@
+project_name: mono-proto
+env:
+  - GO111MODULE=on
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - binary: program
