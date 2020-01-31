@@ -13,14 +13,14 @@ import (
 	"github.com/brymck/mono-proto/pkg"
 )
 
-func readConfig(configPath string) ([]*pkg.Config, error) {
-	var configs []*pkg.Config
+func readConfig(configPath string) (*pkg.Config, error) {
+	var cfg pkg.Config
 	data, err := ioutil.ReadFile(configPath)
 	if err != nil {
-		return configs, err
+		return nil, err
 	}
-	err = yaml.Unmarshal(data, &configs)
-	return configs, err
+	err = yaml.Unmarshal(data, &cfg)
+	return &cfg, err
 }
 
 func main() {
@@ -34,13 +34,13 @@ func main() {
 	env.RootDirectory = *flag.String("schemas-root", env.RootDirectory, "path to schemas root directory")
 	flag.Parse()
 
-	configs, err := readConfig(*configPath)
+	cfg, err := readConfig(*configPath)
 	if err != nil {
 		logger.Fatal(err)
 	}
-	ghs := make([]*internal.GitHub, len(configs))
-	for i, cfg := range configs {
-		gh := internal.NewGitHub(&cfg.GitHub, env, logger)
+	ghs := make([]*internal.GitHub, len(cfg.Repos))
+	for i, repoCfg := range cfg.Repos {
+		gh := internal.NewGitHub(&repoCfg.GitHub, env, logger)
 		ghs[i] = gh
 	}
 	for _, gh := range ghs {

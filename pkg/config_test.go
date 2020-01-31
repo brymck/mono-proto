@@ -19,16 +19,20 @@ func TestConfig(t *testing.T) {
 			want:    Config{Prototool: "foo"},
 		},
 		{
-			name:    "Repo",
-			content: "github:\n  owner: brymck\n  name: mono-proto",
-			want:    Config{GitHub: Repo{Owner: "brymck", Name: "mono-proto"}},
+			name: "Repo",
+			content: `
+              repos:
+                - github:
+                    owner: brymck
+                    name: mono-proto`,
+			want: Config{Repos: []RepoConfig{{GitHub: Repo{Owner: "brymck", Name: "mono-proto"}}}},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			cfg := Config{}
-			err := yaml.Unmarshal([]byte(tt.content), &cfg)
+			err := yaml.Unmarshal([]byte(dedent(tt.content)), &cfg)
 			if err != nil {
 				t.Fatal(err)
 			}
