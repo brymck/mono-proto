@@ -1,6 +1,8 @@
 mono-proto
 ==========
 
+![](https://github.com/brymck/mono-proto/workflows/goreleaser/badge.svg)
+
 This CLI utility orchestrates
 
 * Cloning a monorepo containing Protobuf schemas
