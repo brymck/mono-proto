@@ -1,12 +1,12 @@
 name: goreleaser
 on:
-  pull_request:
-  push:
+  - pull_request
+  - push
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Check out
         uses: actions/checkout@v1
       - name: Set up Go
         uses: actions/setup-go@v1

@@ -6,15 +6,15 @@ all: $(PROJECT_NAME)
 $(PROJECT_NAME):
 	go build ./...
 
-profile.out: $(GO_FILES)
-	go test -coverprofile=profile.out ./...
+coverage.txt: $(GO_FILES)
+	go test -race -coverprofile=coverage.txt -covermode=atomic ./...
 
-test: profile.out
+test: coverage.txt
 
 cover: test
-	go tool cover -html=profile.out
+	go tool cover -html=coverage.txt
 
 clean:
-	rm mono-proto profile.out
+	rm mono-proto coverage.txt
 
 .PHONY: all test cover clean

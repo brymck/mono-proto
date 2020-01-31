@@ -17,5 +17,8 @@
 # Goreleaser output
 dist/
 
+# Coverage report with Codecov's preferred name
+coverage.txt
+
 # Project-specific binaries
 mono-proto
