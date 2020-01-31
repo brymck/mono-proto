@@ -2,6 +2,7 @@ mono-proto
 ==========
 
 ![](https://github.com/brymck/mono-proto/workflows/goreleaser/badge.svg)
+[![codecov](https://codecov.io/gh/brymck/mono-proto/branch/master/graph/badge.svg)](https://codecov.io/gh/brymck/mono-proto)
 
 This CLI utility orchestrates
 
