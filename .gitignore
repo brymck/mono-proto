@@ -16,3 +16,6 @@
 
 # Goreleaser output
 dist/
+
+# Project-specific binaries
+mono-proto
